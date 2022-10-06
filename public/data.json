@@ -1,0 +1,24 @@
+{
+  "apps": [
+    {
+      "name": "Command Line",
+      "currentValue": "0.34.0",
+      "expectedValue": "0.35.0"
+    },
+    {
+      "name": "Github Action",
+      "currentValue": "0.34.0",
+      "expectedValue": "0.34.0"
+    },
+    {
+      "name": "Docker",
+      "currentValue": "0.34.0",
+      "expectedValue": "0.34.0"
+    },
+    {
+      "name": "updatecli",
+      "currentValue": "0.34.0",
+      "expectedValue": "0.34.0"
+    }
+  ]
+}
