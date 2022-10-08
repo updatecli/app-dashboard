@@ -6,12 +6,21 @@ The data file relies on Updatecli to be automatically updated.
 
 To use this project, you need to:
 
-. Add/remove the application monitored  to the file `data.json` then add/remove
-. Add/remove Updatecli manifest from directory `updatecli/updatecli.d/`
+1. Add/Remove the application monitored  to/from file `public/data.json` then add/remove
+
+1. Add/remove Updatecli manifest from directory `updatecli/updatecli.d/`
 
 More information on [Updatecli](https://github.com/updatecli/updatecli)
 
 ## Project setup
+
+### Requirements
+
+* nodejs
+* npm
+* updatecli
+
+### Install dependencies
 ```
 npm install
 ```
@@ -31,5 +40,16 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Run Updatecli in DryRun
+```
+export UPDATECLI_GITHUB_ACTOR=<your github username>
+export UPDATECLI_GITHUB_TOKEN=<your github PAT>
+updatecli diff --config updatecli/updatecli.d --values updatecli/values.yaml --experimental
+```
+
+### Run Updatecli
+```
+export UPDATECLI_GITHUB_ACTOR=<your github username>
+export UPDATECLI_GITHUB_TOKEN=<your github PAT>
+updatecli apply --config updatecli/updatecli.d --values updatecli/values.yaml --experimental
+```
