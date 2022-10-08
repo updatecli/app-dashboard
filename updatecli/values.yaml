@@ -1,0 +1,7 @@
+scms:
+  default:
+    owner: olblak
+    repository: app-dashboard
+    email: me@olblak.com
+    branch: main 
+    user: olblak
