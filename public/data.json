@@ -3,7 +3,7 @@
     {
       "currentValue": "0.34.0",
       "description": "A Declarative Dependency Management tool",
-      "expectedValue": "0.35.0",
+      "expectedValue": "v0.35.0",
       "name": "Command Line"
     },
     {
