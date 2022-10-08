@@ -3,25 +3,53 @@
       class="py-8 px-6"
       fluid
   >
-      <v-row>
+      <v-row class="mx-auto">
           <v-col
               v-for="app in appsData.apps"
               :key="app.name"
-              cols="4"
+              cols="auto"
+              lg="4"
+              md="12"
+              sm="12"
           >
             <v-card
               elevation="3"
               shaped
               outline
-              max-width="374"
-              class="mx-auto my=12">
+              min-height="300"
+              >
               <v-card-title align="center">{{ app.name}}</v-card-title>
-              <v-divider></v-divider>
-              <v-card-text align="center">Current:{{ app.currentValue}}</v-card-text>
-              <v-spacer></v-spacer>
-              <v-card-text align="center">Expected{{ app.expectedValue}}</v-card-text>
-            </v-card>
 
+              <v-row>
+                <v-col>
+                  <v-card-text align="center">
+                    {{ app.description}}
+                    {{ isMatching(app.currentValue, app.expectedValue) }}
+                  </v-card-text>
+                </v-col>
+              </v-row>
+
+                <v-row>
+                  <v-col
+                    cols="auto"
+                    lg="6"
+                    md="12"
+                    sm="12"
+                  >
+                    <v-card-title align="center">Current</v-card-title>
+                    <v-card-text align="center">{{ app.currentValue}}</v-card-text>
+                  </v-col>
+                  <v-col
+                    cols="auto"
+                    lg="6"
+                    md="12"
+                    sm="12"
+                  >
+                    <v-card-title align="center">Expected</v-card-title>
+                    <v-card-text align="center">{{ app.expectedValue}}</v-card-text>
+                  </v-col>
+                </v-row>
+            </v-card>
           </v-col>
       </v-row>
   </v-container>
@@ -36,6 +64,12 @@ export default {
   data: () => ({
     appsData: []
   }),
+
+  methods: {
+    isMatching: function(currentValue, expectedValue) {
+      return currentValue == expectedValue;
+    }
+  },
 
   async created() {
     try {
