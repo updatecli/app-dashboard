@@ -1,16 +1,4 @@
 name: Get Updatecli Docker Information
-scms:
-  default:
-    kind: github
-    spec:
-        branch: "{{ .scms.default.branch}}"
-        email: "{{ .scms.default.email}}"
-        owner: "{{ .scms.default.owner}}"
-        repository: "{{ .scms.default.repository}}"
-        token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
-        user: "{{ .scms.default.user }}"
-        username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
-    disabled: false
 
 sources:
   currentValue:
@@ -49,3 +37,26 @@ targets:
     spec:
       file: public/data.json
       key: ".apps.(.name=Docker).expectedValue"
+
+scms:
+  default:
+    kind: github
+    spec:
+      branch: "{{ .scms.default.branch}}"
+      email: "{{ .scms.default.email}}"
+      owner: "{{ .scms.default.owner}}"
+      repository: "{{ .scms.default.repository}}"
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+      user: "{{ .scms.default.user }}"
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+    disabled: false
+
+pullrequests:
+  default:
+    title: '[updatecli] Update Updatecli Docker information to {{ source "expectedValue" }}'
+    kind: github
+    spec:
+      automerge: true
+      labels:
+          - skip-changelog
+    scmid: default

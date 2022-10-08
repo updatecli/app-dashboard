@@ -1,23 +1,5 @@
 name: Get Updatecli command line Information
 
-scms:
-  github-action:
-    kind: git
-    spec:
-      url: https://github.com/updatecli/updatecli-action.git
-      branch: v2
-  default:
-    kind: github
-    spec:
-        branch: "{{ .scms.default.branch}}"
-        email: "{{ .scms.default.email}}"
-        owner: "{{ .scms.default.owner}}"
-        repository: "{{ .scms.default.repository}}"
-        token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
-        user: "{{ .scms.default.user }}"
-        username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
-    disabled: false
-
 sources:
   currentValue:
     name: Get Latest Updatecli Version
@@ -46,3 +28,32 @@ targets:
     spec:
       file: public/data.json
       key: ".apps.(.name=Command Line).expectedValue"
+
+pullrequests:
+  default:
+    title: '[updatecli] Update command line information'
+    kind: github
+    spec:
+      automerge: true
+      labels:
+        - skip-changelog
+    scmid: default
+
+scms:
+  github-action:
+    kind: git
+    spec:
+      url: https://github.com/updatecli/updatecli-action.git
+      branch: v2
+
+  default:
+    kind: github
+    spec:
+        branch: "{{ .scms.default.branch}}"
+        email: "{{ .scms.default.email}}"
+        owner: "{{ .scms.default.owner}}"
+        repository: "{{ .scms.default.repository}}"
+        token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+        user: "{{ .scms.default.user }}"
+        username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+    disabled: false

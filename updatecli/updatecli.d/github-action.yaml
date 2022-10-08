@@ -55,3 +55,13 @@ targets:
     spec:
       file: public/data.json
       key: ".apps.(.name=Github Action).expectedValue"
+
+pullrequests:
+  default:
+    title: '[updatecli] Update Github Action information'
+    kind: github
+    spec:
+      automerge: true
+      labels:
+        - skip-changelog
+    scmid: default
