@@ -1,6 +1,5 @@
 [build]
-  publish = "public"
-  functions = "functions"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "16.17.1"
