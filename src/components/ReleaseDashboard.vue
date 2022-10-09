@@ -3,6 +3,26 @@
       class="py-8 px-6"
       fluid
   >
+      <v-row class="mx-auto" v-if="appsData.description">
+        <v-col
+            cols="auto"
+            lg="12"
+            md="12"
+            sm="12"
+          >
+            <v-card
+              elevation="3"
+              shaped
+              outline
+              >
+              <v-card-title align="center">Description</v-card-title>
+              <v-card-text align="center">
+                <p>{{ appsData.description }}</p>
+              </v-card-text>
+            </v-card>
+        </v-col>
+      </v-row>
+
       <v-row class="mx-auto">
           <v-col
               v-for="app in appsData.apps"
