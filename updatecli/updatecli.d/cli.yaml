@@ -18,7 +18,7 @@ targets:
     sourceid: currentValue
     spec:
       file: public/data.json
-      key: ".apps.(.name=Command Line).currentValue"
+      key: ".projects.(.name=Updatecli).apps.(.name=Command Line).currentValue"
 
   expectedVersion:
     name: Ensure Data.json is up to date with expectedValue
@@ -27,7 +27,7 @@ targets:
     sourceid: currentValue
     spec:
       file: public/data.json
-      key: ".apps.(.name=Command Line).expectedValue"
+      key: ".projects.(.name=Updatecli).apps.(.name=Command Line).expectedValue"
 
 pullrequests:
   default:

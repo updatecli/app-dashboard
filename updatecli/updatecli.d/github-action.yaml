@@ -45,7 +45,7 @@ targets:
     sourceid: currentValue
     spec:
       file: public/data.json
-      key: ".apps.(.name=Github Action).currentValue"
+      key: ".projects.(.name=Updatecli).apps.(.name=Github Action).currentValue"
 
   expectedVersion:
     name: Ensure Data.json is up to date with expectedValue
@@ -54,7 +54,7 @@ targets:
     sourceid: expectedValue
     spec:
       file: public/data.json
-      key: ".apps.(.name=Github Action).expectedValue"
+      key: ".projects.(.name=Updatecli).apps.(.name=Github Action).expectedValue"
 
 pullrequests:
   default:
