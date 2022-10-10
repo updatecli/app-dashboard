@@ -1,23 +1,28 @@
 {
-  "description": "This dashboard shows current and expected Updatecli artifacts version.",
-  "apps": [
+  "projects": [
     {
-      "currentValue": "v0.35.0",
-      "description": "A Declarative Dependency Management tool",
-      "expectedValue": "v0.35.0",
-      "name": "Command Line"
-    },
-    {
-      "currentValue": "v0.35.0",
-      "description": "Updatecli github action",
-      "expectedValue": "v0.35.0",
-      "name": "Github Action"
-    },
-    {
-      "currentValue": "v0.35.0",
-      "description": "Updatecli Docker Image stored on ghcr.io",
-      "expectedValue": "v0.35.0",
-      "name": "Docker"
+      "name": "Updatecli",
+      "description": "This dashboard shows current and expected Updatecli artifacts version.",
+      "apps": [
+        {
+          "currentValue": "v0.35.0",
+          "description": "A Declarative Dependency Management tool",
+          "expectedValue": "v0.35.0",
+          "name": "Command Line"
+        },
+        {
+          "currentValue": "v0.35.0",
+          "description": "Updatecli github action",
+          "expectedValue": "v0.35.0",
+          "name": "Github Action"
+        },
+        {
+          "currentValue": "v0.35.0",
+          "description": "Updatecli Docker Image stored on ghcr.io",
+          "expectedValue": "v0.35.0",
+          "name": "Docker"
+        }
+      ]
     }
   ]
 }
