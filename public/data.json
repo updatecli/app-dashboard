@@ -10,7 +10,7 @@
           "name": "Command Line"
         },
         {
-          "currentValue": "v0.35.1",
+          "currentValue": "v0.36.0",
           "description": "Updatecli github action",
           "expectedValue": "v0.36.0",
           "name": "Github Action"
