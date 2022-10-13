@@ -1,13 +1,12 @@
 {
+  "description": "This dashboard shows current and expected Updatecli artifacts version.",
   "projects": [
     {
-      "name": "Updatecli",
-      "description": "This dashboard shows current and expected Updatecli artifacts version.",
       "apps": [
         {
-          "currentValue": "v0.35.1",
+          "currentValue": "v0.36.0",
           "description": "A Declarative Dependency Management tool",
-          "expectedValue": "v0.35.1",
+          "expectedValue": "v0.36.0",
           "name": "Command Line"
         },
         {
@@ -22,8 +21,9 @@
           "expectedValue": "v0.35.1",
           "name": "Docker"
         }
-      ]
+      ],
+      "description": "This dashboard shows current and expected Updatecli artifacts version.",
+      "name": "Updatecli"
     }
-  ],
-  "description": "This dashboard shows current and expected Updatecli artifacts version."
+  ]
 }
