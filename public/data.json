@@ -12,7 +12,7 @@
         {
           "currentValue": "v0.35.1",
           "description": "Updatecli github action",
-          "expectedValue": "v0.35.1",
+          "expectedValue": "v0.36.0",
           "name": "Github Action"
         },
         {
