@@ -1,8 +1,7 @@
 {
+  "description": "This dashboard shows current and expected Updatecli artifacts version.",
   "projects": [
     {
-      "name": "Updatecli",
-      "description": "This dashboard shows current and expected Updatecli artifacts version.",
       "apps": [
         {
           "currentValue": "v0.35.1",
@@ -13,7 +12,7 @@
         {
           "currentValue": "v0.35.1",
           "description": "Updatecli github action",
-          "expectedValue": "v0.35.1",
+          "expectedValue": "v0.36.0",
           "name": "Github Action"
         },
         {
@@ -22,8 +21,9 @@
           "expectedValue": "v0.35.1",
           "name": "Docker"
         }
-      ]
+      ],
+      "description": "This dashboard shows current and expected Updatecli artifacts version.",
+      "name": "Updatecli"
     }
-  ],
-  "description": "This dashboard shows current and expected Updatecli artifacts version."
+  ]
 }
