@@ -4,7 +4,7 @@
     {
       "apps": [
         {
-          "currentValue": "v0.36.0",
+          "currentValue": "v0.36.1",
           "description": "A Declarative Dependency Management tool",
           "expectedValue": "v0.36.0",
           "name": "Command Line"
