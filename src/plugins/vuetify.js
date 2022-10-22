@@ -6,7 +6,7 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 
 const updatecliTheme = {
-  dark: false,
+  dark: true,
   colors: {
     background: '#FFFFFF',
     surface: '#FFFFFF',

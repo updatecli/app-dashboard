@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <!---->
     <v-system-bar window app>
       <v-btn icon="mdi-github"  variant="text" href="https://github.com/updatecli/app-dashboard" ></v-btn>
       <v-btn icon="mdi-twitter"  variant="text" href="https://twitter.com/updatecliio" ></v-btn>
@@ -16,8 +15,9 @@
       app>
 
         <v-list-item
+          height="48"
           prepend-avatar="/updatecli.png"
-          title="Updatecli"
+          title="Menu"
           nav
         ></v-list-item>
 
@@ -26,7 +26,7 @@
         <v-list density="compact" nav>
           <v-list-item
             prepend-icon="mdi-home-city"
-            title="Dashboard" 
+            title="Dashboards"
             href="/"
             value="home"></v-list-item>
         </v-list>
