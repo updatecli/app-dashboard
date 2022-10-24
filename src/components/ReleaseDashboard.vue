@@ -86,24 +86,18 @@
 
                     <v-row>
                       <v-col
+                        v-for="spec in app.spec"
+                        :key="spec.name"
                         cols="auto"
                         lg="6"
                         md="12"
                         sm="12"
                       >
-                        <v-card-title align="center">Current</v-card-title>
-                        <v-card-text align="center">{{ app.current.spec.version }}</v-card-text>
+                        <v-card-title align="center">{{ spec.name }}</v-card-title>
+                        <v-card-text align="center">{{ spec.version }}</v-card-text>
+                        <v-card-text align="center">{{ spec.description }}</v-card-text>
                       </v-col>
-                      <v-col
-                        cols="auto"
-                        lg="6"
-                        md="12"
-                        sm="12"
-                      >
-                        <v-card-title align="center">Expected</v-card-title>
-                        <v-card-text align="center">{{ app.expected.spec.version }}</v-card-text>
-                      </v-col>
-                    </v-row>
+                      </v-row>
                   <v-row>
                     <v-col>
                       <v-card-text align="center">Updated At</v-card-text>
