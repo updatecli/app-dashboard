@@ -32,18 +32,6 @@
           </v-app-bar>
     </v-container>
 
-
-    <v-container>
-      <template>
-        <v-data-table
-          :items="dashboard"
-          :items-per-page="5"
-          class="elevation-1"
-        ></v-data-table>
-      </template>
-    </v-container>
-
-
       <v-row v-for="project in getDashboard.projects"
               :key="project.name">
           <v-col
@@ -52,37 +40,6 @@
               md="12"
               sm="12"
             >
-          <!---->
-
-
-
-        <!-- 
-        <v-table>
-          <thead>
-            <tr>
-              <th class="text-left">
-                Project
-              </th>
-              <th class="text-left">
-                Application
-              </th>
-              <th class="text-left">
-                State
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="item in getDashboard.projects"
-              :key="item.name"
-            >
-              <td>{{ item.name }}</td>
-              <td>{{ item.description }}</td>
-              <td><v-btn icon="mdi-robot-love" color="red" size="x-small"></v-btn></td>
-            </tr>
-          </tbody>
-        </v-table>
---->
 
           <!-- Show Project Description -->
           <v-row class="mx-auto">
