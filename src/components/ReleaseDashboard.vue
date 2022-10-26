@@ -6,7 +6,6 @@
     <v-container>
           <v-app-bar
             absolute
-            dark
             dense
             height="48"
             elevation="0"
@@ -132,13 +131,6 @@ export default {
   data: () => ({
     dashboard: [],
     dashboards: [],
-    singleExpand: false,
-    test: [
-      {
-        name: "a",
-        description: "b",
-      }
-    ]
   }),
 
   computed: {
@@ -193,7 +185,6 @@ export default {
     try {
       const dashboards = await axios.get(`/api/dashboards`);
       this.dashboards = dashboards.data.data;
-      console.log(this.dashboards[0]["id"])
 
       this.getDashboardData(this.dashboards[0]["id"])
 
