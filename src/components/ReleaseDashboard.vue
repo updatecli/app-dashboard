@@ -80,7 +80,7 @@
                   min-height="300"
                   >
                   <v-card-title align="center">
-                    <v-icon :icon=getStatusIcon(app.status)></v-icon>
+                    <v-icon :icon=getStatusIcon(app.status) :color=getStatusColor(app.status)></v-icon>
                     {{ app.name}}</v-card-title>
 
                   <v-row>
@@ -161,6 +161,18 @@ export default {
             this.dashboard = response.data.data
         })
       //this.timer = setInterval(this.getDashboardData(id), 300000)
+    },
+    getStatusColor: function(status){
+      switch (status) {
+        case 2:
+          return "success"
+        case 3:
+          return "red"
+        case 4:
+          return "orange"
+        default:
+          return "mdi-robot-off"
+      }
     },
     getStatusIcon: function(status){
       switch (status) {
