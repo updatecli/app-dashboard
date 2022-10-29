@@ -3,6 +3,9 @@
       class="py-8 px-6"
       fluid
   >
+      <!--
+        Show Dashboard Menu
+      -->
     <v-container>
           <v-app-bar
             absolute
@@ -31,6 +34,173 @@
           </v-app-bar>
     </v-container>
 
+      <!--  -->
+      <v-row v-for="project in getDashboard.projects"
+              :key="project.name">
+
+          <v-col
+              cols="auto"
+              lg="12"
+              md="12"
+              sm="12"
+            >
+
+          <!-- Show Project Description -->
+          <v-row class="mx-auto">
+            <v-col
+                cols="auto"
+                lg="12"
+                md="12"
+                sm="12"
+              >
+                <v-card
+                  elevation="1"
+                  shaped
+                  outline
+                  >
+                  <v-card-title>
+                    {{ project.name }}
+                  </v-card-title>
+                  <v-card-text >
+                    <p>{{ project.description }}</p>
+                  </v-card-text>
+                </v-card>
+            </v-col>
+          </v-row>
+          </v-col>
+
+          <!--
+            Show Project application in a table
+
+          -->
+
+          <v-col
+              cols="auto"
+              lg="12"
+              md="12"
+              sm="12"
+            >
+
+            <v-table
+              density="compact"
+              fixed-header
+              max-height="600px"
+            >
+              <thead>
+                <tr>
+                  <th class="text-left">
+                    Status
+                  </th>
+                  <th class="text-left">
+                    Name
+                  </th>
+                  <th class="text-left">
+                    Description
+                  </th>
+                  <th class="text-left">
+                    Apps
+                  </th>
+                  <th class="text-left">
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="item in project.apps"
+                  :key="item.name"
+                >
+                  <td><v-icon :icon=getStatusIcon(item.status) :color=getStatusColor(item.status)></v-icon></td>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.description }}</td>
+                  <td>
+                    <v-btn
+                      rounded
+                      density="compact"
+                      small
+                      v-for="spec in item.spec"
+                        :key="spec.name"
+                        >
+                      {{ spec.version }}
+                    </v-btn>
+                  </td>
+                  <td>
+                    <v-chip
+                      class="ma-2"
+                      @click="app=item"
+                    >
+                      Details
+                    </v-chip>
+                  </td>
+                </tr>
+              </tbody>
+            </v-table>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col
+              cols="auto"
+              lg="12"
+              md="12"
+              sm="12"
+            >
+            <v-card
+              v-if="app"
+              elevation="0"
+              shaped
+              outline
+              >
+                <v-card-title>{{ app.name }}</v-card-title>
+                <v-card-text>
+                  <p>{{ app.description }}</p>
+                </v-card-text>
+                <v-card-text>
+                  <p>{{ app.updatedAt }}</p>
+                </v-card-text>
+
+
+            </v-card>
+
+          </v-col>
+          <v-col
+              cols="auto"
+              lg="12"
+              md="12"
+              sm="12"
+            >
+              <v-row>
+                <v-col
+                  v-for="spec in app.spec"
+                  :key="spec.name"
+                  cols="auto"
+                  lg="12"
+                  md="12"
+                  sm="12"
+                >
+                  <v-card
+                    :border="true"
+                  >
+                    <v-card-title>{{ spec.name }}</v-card-title>
+                    <v-card-text>{{ spec.version }}</v-card-text>
+                    <v-card-text>{{ spec.description }}</v-card-text>
+                    <v-card-text>
+                      <pre>{{ spec.changelog }}</pre>
+                    </v-card-text>
+                    <v-card-text>
+                      <code class="text-block">
+                        <pre>{{ spec.updatemanifest }}</pre>
+                      </code>
+                    </v-card-text>
+                  </v-card>
+                </v-col>
+              </v-row>
+          </v-col>
+      </v-row>
+
+        <!-- -->
+
+          <!-- Disable for now the vue card
+          For each project, show apps information
+
       <v-row v-for="project in getDashboard.projects"
               :key="project.name">
           <v-col
@@ -40,7 +210,7 @@
               sm="12"
             >
 
-          <!-- Show Project Description -->
+          Show Project Description
           <v-row class="mx-auto">
             <v-col
                 cols="auto"
@@ -62,7 +232,6 @@
           </v-row>
 
 
-          <!-- For each project, show apps information-->
           <v-row class="mx-auto">
               <v-col
                   v-for="app in project.apps"
@@ -118,6 +287,7 @@
 
         </v-col>
       </v-row>
+      -->
 
   </v-container>
 </template>
@@ -129,6 +299,7 @@ export default {
   name: 'ReleaseDashboard',
 
   data: () => ({
+    app: [],
     dashboard: [],
     dashboards: [],
   }),
@@ -137,7 +308,6 @@ export default {
     getDashboard: function() {
       return this.dashboard
     },
-
   },
 
   beforeUnmount() {
@@ -177,7 +347,7 @@ export default {
         default:
           return "mdi-robot-off"
       }
-    }
+    },
 
   },
 
