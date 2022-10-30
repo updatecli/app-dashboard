@@ -26,9 +26,19 @@
         <v-list density="compact" nav>
           <v-list-item
             prepend-icon="mdi-home-city"
+            title="Home"
+            href="/"
+            value="home"></v-list-item>
+          <v-list-item
+            prepend-icon="mdi-view-dashboard"
             title="Dashboards"
             href="/"
             value="home"></v-list-item>
+          <v-list-item
+            prepend-icon="mdi-information-variant"
+            title="About"
+            href="/about"
+            value="about"></v-list-item>
         </v-list>
 
     </v-navigation-drawer>
@@ -36,6 +46,18 @@
     <v-main>
       <ReleaseDashboard/>
     </v-main>
+
+    <v-footer
+      class="text-center d-flex flex-column"
+    >
+    <div>
+      <v-btn class="mx-4" icon="mdi-github"  variant="text" href="https://github.com/updatecli/app-dashboard"></v-btn>
+      <v-btn class="mx-4" icon="mdi-twitter" variant="text" href="https://twitter.com/updatecliio"></v-btn>
+    </div>
+    <div>
+      {{ new Date().getFullYear() }} — <strong>Olblak</strong>
+    </div>
+  </v-footer>
   </v-app>
 </template>
 
