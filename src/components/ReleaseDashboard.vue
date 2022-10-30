@@ -184,7 +184,7 @@
           >
           <v-card
             v-if="app"
-            elevation="0"
+            elevation="5"
             shaped
             outline
             >
@@ -195,8 +195,6 @@
               <v-card-text>
                 <p>{{ app.updatedAt }}</p>
               </v-card-text>
-
-
           </v-card>
         </v-col>
         <v-col
@@ -216,22 +214,45 @@
             >
               <v-card
                 :border="true"
+                variant="outlined"
               >
-                <v-card-title>{{ spec.name }}</v-card-title>
-                <v-card-text>{{ spec.version }}</v-card-text>
-                  <v-expansion-panels>
+                <v-card-title>
+                  <v-row
+                    align-center="center"
+                    >
+                    <v-col>
+                      {{ spec.name }}
+                    </v-col>
+                    <v-col
+                      class="text-right"
+                    >
+                      <v-btn
+                        class="justify-end"
+                        rounded
+                        density="compact"
+                        small
+                          >
+                        {{ spec.version }}
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                </v-card-title>
+                  <v-expansion-panels
+                  >
                     <v-expansion-panel
                       title="Description"
                       :text="spec.description"
                     >
                     </v-expansion-panel>
                     <v-expansion-panel
+                      class="text-body-1"
                       title="Changelog"
                       :text="spec.changelog"
                       tag="pre"
                     >
                     </v-expansion-panel>
                     <v-expansion-panel
+                      class="text-body-1"
                       title="Updatecli Manifest"
                       :text="spec.updatemanifest"
                       tag="pre"
