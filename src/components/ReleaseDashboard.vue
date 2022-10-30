@@ -14,17 +14,6 @@
         elevation="0"
       >
         <v-list
-          density="compact"
-          class="justify-center"
-          nav
-          width="110"
-          >
-          <v-list-item
-            title="Dashboard"
-            >
-          </v-list-item>
-        </v-list>
-        <v-list
           v-for="dashboardInfo in dashboards" :key="dashboardInfo.name"
           density="compact"
           class="justify-center"
@@ -51,17 +40,6 @@
         height="48"
         elevation="0"
         >
-        <v-list
-          density="compact"
-          class="justify-center"
-          nav
-          width="110"
-          >
-          <v-list-item
-            title="Project"
-            >
-          </v-list-item>
-        </v-list>
         <v-list
           v-for="project in dashboard.projects" :key="project.name"
           density="compact"
@@ -184,181 +162,93 @@
           >
           <v-card
             v-if="app"
-            elevation="5"
+            flat="true"
             shaped
             outline
             >
-              <v-card-title>{{ app.name }}</v-card-title>
-              <v-card-text>
-                <p>{{ app.description }}</p>
-              </v-card-text>
-              <v-card-text>
-                <p>{{ app.updatedAt }}</p>
-              </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col
-            cols="auto"
-            lg="12"
-            md="12"
-            sm="12"
-          >
-          <v-row>
-            <v-col
-              v-for="spec in app.spec"
-              :key="spec.name"
-              cols="auto"
-              lg="12"
-              md="12"
-              sm="12"
-            >
-              <v-card
-                :border="true"
-                variant="outlined"
+            <v-row>
+              <v-col
+                  cols="auto"
+                  lg="12"
+                  md="12"
+                  sm="12"
               >
-                <v-card-title>
-                  <v-row
-                    align-center="center"
-                    >
-                    <v-col>
-                      {{ spec.name }}
-                    </v-col>
-                    <v-col
-                      class="text-right"
-                    >
-                      <v-btn
-                        class="justify-end"
-                        rounded
-                        density="compact"
-                        small
-                          >
-                        {{ spec.version }}
-                      </v-btn>
-                    </v-col>
-                  </v-row>
-                </v-card-title>
-                  <v-expansion-panels
-                  >
-                    <v-expansion-panel
-                      title="Description"
-                      :text="spec.description"
-                    >
-                    </v-expansion-panel>
-                    <v-expansion-panel
-                      class="text-body-1"
-                      title="Changelog"
-                      :text="spec.changelog"
-                      tag="pre"
-                    >
-                    </v-expansion-panel>
-                    <v-expansion-panel
-                      class="text-body-1"
-                      title="Updatecli Manifest"
-                      :text="spec.updatemanifest"
-                      tag="pre"
-                    >
-                    </v-expansion-panel>
-                  </v-expansion-panels>
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-    </v-container>
-
-        <!-- -->
-
-          <!-- Disable for now the vue card
-          For each project, show apps information
-
-      <v-row v-for="project in getDashboard.projects"
-              :key="project.name">
-          <v-col
-              cols="auto"
-              lg="12"
-              md="12"
-              sm="12"
-            >
-
-          Show Project Description
-          <v-row class="mx-auto">
-            <v-col
+                <v-card
+                  flat="true"
+                >
+                  <v-card-title>{{ app.name }}</v-card-title>
+                  <v-card-text>
+                    <p>{{ app.description }}</p>
+                  </v-card-text>
+                  <v-card-text>
+                    <p>{{ app.updatedAt }}</p>
+                  </v-card-text>
+                </v-card>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col
+                v-for="spec in app.spec"
+                :key="spec.name"
                 cols="auto"
                 lg="12"
                 md="12"
                 sm="12"
               >
                 <v-card
-                  elevation="3"
-                  shaped
-                  outline
-                  >
-                  <v-card-title align="center">{{ project.name }}</v-card-title>
-                  <v-card-text align="center">
-                    <p>{{ project.description }}</p>
-                  </v-card-text>
-                </v-card>
-            </v-col>
-          </v-row>
-
-
-          <v-row class="mx-auto">
-              <v-col
-                  v-for="app in project.apps"
-                  :key="app.name"
-                  cols="auto"
-                  lg="4"
-                  md="12"
-                  sm="12"
-              >
-                <v-card
-                  elevation="3"
-                  shaped
-                  outline
-                  min-height="300"
-                  >
-                  <v-card-title align="center">
-                    <v-icon :icon=getStatusIcon(app.status) :color=getStatusColor(app.status)></v-icon>
-                    {{ app.name}}</v-card-title>
-
-                  <v-row>
-                    <v-col>
-                      <v-card-text align="center">
-                        {{ app.description}}
-                      </v-card-text>
-                    </v-col>
-                  </v-row>
-
-                    <v-row>
-                      <v-col
-                        v-for="spec in app.spec"
-                        :key="spec.name"
-                        cols="auto"
-                        lg="6"
-                        md="12"
-                        sm="12"
+                  :border="true"
+                  variant="outlined"
+                >
+                  <v-card-title>
+                    <v-row
+                      align-center="center"
                       >
-                        <v-card-title align="center">{{ spec.name }}</v-card-title>
-                        <v-card-text align="center">{{ spec.version }}</v-card-text>
-                        <v-card-text align="center">{{ spec.description }}</v-card-text>
+                      <v-col>
+                        {{ spec.name }}
                       </v-col>
-                      </v-row>
-                  <v-row>
-                    <v-col>
-                      <v-card-text align="center">Updated At</v-card-text>
-                      <v-card-subtitle align="center">
-                      {{ app.updatedAt}}
-                      </v-card-subtitle>
-                    </v-col>
-                  </v-row>
+                      <v-col
+                        class="text-right"
+                      >
+                        <v-btn
+                          class="justify-end"
+                          rounded
+                          density="compact"
+                          small
+                            >
+                          {{ spec.version }}
+                        </v-btn>
+                      </v-col>
+                    </v-row>
+                  </v-card-title>
+                    <v-expansion-panels
+                    >
+                      <v-expansion-panel
+                        title="Description"
+                        :text="spec.description"
+                      >
+                      </v-expansion-panel>
+                      <v-expansion-panel
+                        class="text-body-1"
+                        title="Changelog"
+                        :text="spec.changelog"
+                        tag="pre"
+                      >
+                      </v-expansion-panel>
+                      <v-expansion-panel
+                        class="text-body-1"
+                        title="Updatecli Manifest"
+                        :text="spec.updatemanifest"
+                        tag="pre"
+                      >
+                      </v-expansion-panel>
+                    </v-expansion-panels>
                 </v-card>
               </v-col>
-          </v-row>
-
+            </v-row>
+          </v-card>
         </v-col>
       </v-row>
-      -->
-
+    </v-container>
   </v-container>
 </template>
 
