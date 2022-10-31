@@ -62,9 +62,7 @@
     </v-container>
 
     <!-- Show Project Description -->
-    <v-container
-      v-if="currentProject"
-      >
+    <v-container v-if="currentProject">
       <v-row 
         class="mx-auto">
         <v-col
@@ -162,7 +160,7 @@
           >
           <v-card
             v-if="app"
-            flat="true"
+            :flat=true
             shaped
             outline
             >
@@ -174,7 +172,7 @@
                   sm="12"
               >
                 <v-card
-                  flat="true"
+                  :flat=true
                 >
                   <v-card-title>{{ app.name }}</v-card-title>
                   <v-card-text>
@@ -325,11 +323,6 @@ export default {
     try {
       const dashboards = await axios.get(`/api/dashboards`);
       this.dashboards = dashboards.data.data;
-      this.getDashboardData(this.dashboards[0]["id"])
-
-      // for some reason the following line the wrong value to currentProject
-      this.setCurrentProject(this.dashboard.projects[0])
-
     } catch (error) {
       console.log(error);
     }
