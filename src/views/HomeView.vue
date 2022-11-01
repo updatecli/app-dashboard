@@ -4,7 +4,18 @@
     <SideNavigation/>
 
     <v-main>
-      <p>Hello World</p>
+      <v-container>
+        <v-row>
+          <v-col>
+            <v-img
+              src="../assets/logo.png"
+              height="256"
+              contain
+              class="grey darken-4"
+            ></v-img>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-main>
 
     <ReleaseFooter/>
