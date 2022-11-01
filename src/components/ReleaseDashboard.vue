@@ -63,7 +63,7 @@
 
     <!-- Show Project Description -->
     <v-container v-if="currentProject">
-      <v-row 
+      <v-row
         class="mx-auto">
         <v-col
             cols="auto"
@@ -260,15 +260,9 @@ export default {
     app: [],
     dashboard: [],
     dashboards: [],
-    currentProject: [],
+    currentProject: '',
     currentDashboardID: '',
   }),
-
-  computed: {
-    getDashboard: function() {
-      return this.dashboard
-    },
-  },
 
   beforeUnmount() {
     this.cancelAutoUpdate();
@@ -276,6 +270,10 @@ export default {
 
   watch: {
     currentDashboardID(newID){
+      // No need to qery API if if ID is empty
+      if (newID == '') {
+        return
+      }
       try {
         axios.get("/api/dashboards/" + newID).then(response => {
               this.dashboard = response.data.data
@@ -293,9 +291,11 @@ export default {
     },
     setCurrentProject(project) {
       this.currentProject = project;
+      return this.currentProject;
     },
     setCurrentDashboardID(id) {
-      this.currentDashboardID = id
+      this.currentDashboardID = id;
+      this.currentProject = '';
     },
     getStatusColor: function(status){
       switch (status) {
