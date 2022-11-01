@@ -23,12 +23,12 @@
             v-if="dashboard.name == dashboardInfo.name"
             :title="dashboardInfo.name"
             :active="true"
-            @click="getDashboardData(dashboardInfo.id);"
+            @click="setCurrentDashboardID(dashboardInfo.id)"
           ></v-list-item>
           <v-list-item
             v-else
             :title="dashboardInfo.name"
-            @click="getDashboardData(dashboardInfo.id);"
+            @click="setCurrentDashboardID(dashboardInfo.id)"
           ></v-list-item>
         </v-list>
       </v-app-bar>
@@ -261,6 +261,7 @@ export default {
     dashboard: [],
     dashboards: [],
     currentProject: [],
+    currentDashboardID: '',
   }),
 
   computed: {
@@ -273,24 +274,28 @@ export default {
     this.cancelAutoUpdate();
   },
 
+  watch: {
+    currentDashboardID(newID){
+      try {
+        axios.get("/api/dashboards/" + newID).then(response => {
+              this.dashboard = response.data.data
+          });
+        this.timer = setInterval(this.getDashboardData(newID), 60)
+      } catch (error){
+        this.dashboard = [];
+      }
+    }
+  },
+
   methods: {
     cancelAutoUpdate() {
       clearInterval(this.timer);
     },
-    getDashboardData(id) {
-      try {
-        axios.get("/api/dashboards/" + id).then(response => {
-              this.dashboard = response.data.data
-          });
-        //this.timer = setInterval(this.getDashboardData(id), 300000)
-      } catch (error){
-        this.dashboard = [];
-        console.log(error);
-      }
-      return this.dashboard;
-    },
     setCurrentProject(project) {
       this.currentProject = project;
+    },
+    setCurrentDashboardID(id) {
+      this.currentDashboardID = id
     },
     getStatusColor: function(status){
       switch (status) {
