@@ -291,11 +291,13 @@ export default {
     },
     setCurrentProject(project) {
       this.currentProject = project;
+      this.app = '';
       return this.currentProject;
     },
     setCurrentDashboardID(id) {
       this.currentDashboardID = id;
       this.currentProject = '';
+      this.app = '';
     },
     getStatusColor: function(status){
       switch (status) {
