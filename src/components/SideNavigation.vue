@@ -24,12 +24,12 @@
             to="/"
             value="home"></v-list-item>
           <v-list-item
-            prepend-icon="mdi-view-dashboard"
+            prepend-icon="mdi-satellite-variant"
             title="Dashboards"
             to="/dashboards"
             value="home"></v-list-item>
           <v-list-item
-            prepend-icon="mdi-information-variant"
+            prepend-icon="mdi-alien"
             title="About"
             to="/about"
             value="about"></v-list-item>
