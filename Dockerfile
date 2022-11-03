@@ -11,9 +11,11 @@ FROM nginx:stable-alpine
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 # Dynamic labels are defined from the goreleaser configuration ".goreleaser.yaml"
-LABEL org.opencontainers.image.authors="Olivier Vernin<me@olblak.com>, Damien DUPORTAL <damien.duportal@gmail.com>"
-LABEL org.opencontainers.image.title="Updatecli"
-LABEL org.opencontainers.image.description="The Updatefactory frontend"
+LABEL org.opencontainers.image.authors="Olivier Vernin<me@olblak.com>
+LABEL org.opencontainers.image.title="Updatemonitor-ui"
+LABEL org.opencontainers.image.description="The Updatemonitor UI"
+LABEL org.opencontainers.image.source https://github.com/updatecli/app-dashboard
+
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
