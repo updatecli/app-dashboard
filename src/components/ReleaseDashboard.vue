@@ -3,63 +3,109 @@
       class="py-8 px-6"
       fluid
   >
-      <!--
-        Show Dashboard Menu
-      -->
-    <v-container>
-      <v-app-bar
-        absolute
-        dense
-        height="48"
-        elevation="0"
-      >
-        <v-list
-          v-for="dashboardInfo in dashboards" :key="dashboardInfo.name"
-          density="compact"
-          class="justify-center"
-          nav
-          >
-          <v-list-item
-            v-if="dashboard.name == dashboardInfo.name"
-            :title="dashboardInfo.name"
-            :active="true"
-            @click="setCurrentDashboardID(dashboardInfo.id)"
-          ></v-list-item>
-          <v-list-item
-            v-else
-            :title="dashboardInfo.name"
-            @click="setCurrentDashboardID(dashboardInfo.id)"
-          ></v-list-item>
-        </v-list>
-      </v-app-bar>
-    </v-container>
-    <v-container v-if="dashboard">
-      <v-app-bar
-        absolute
-        dense
-        height="48"
-        elevation="0"
+      <v-container
+        max-height="100"
         >
-        <v-list
-          v-for="project in dashboard.projects" :key="project.name"
-          density="compact"
-          class="justify-center"
-          nav
+        <v-row>
+          <v-col
+            class="text-right"
+            cols="auto"
+            lg="8"
+            md="8"
+            sm="12"
           >
-          <v-list-item
-            v-if="currentProject.name == project.name"
-            :title="project.name"
-            :active="true"
-            @click="setCurrentProject(project)"
-          ></v-list-item>
-          <v-list-item
-            v-else
-            :title="project.name"
-            @click="setCurrentProject(project)"
-          ></v-list-item>
-        </v-list>
-      </v-app-bar>
-    </v-container>
+          <h1>
+            Dashboards
+          </h1>
+          </v-col>
+        </v-row>
+
+        <v-row>
+          <v-col
+            class="text-right"
+            cols="auto"
+            lg="8"
+            md="8"
+            sm="12"
+          >
+            <p>
+            Dashboards allow to visualize version information
+            </p>
+            <p>
+            First, pick a dashboard
+            </p>
+            <p>
+            Then a project within that dashboard
+            </p>
+            <p>
+            Finally, you can detailed application information
+            </p>
+          </v-col>
+          <v-col
+            class="text-left"
+            cols="auto"
+            lg="2"
+            md="2"
+            sm="12"
+            >
+            <div
+              v-for="dashboardInfo in dashboards" :key="dashboardInfo.name"
+              >
+              <v-btn
+                v-if="dashboard.name == dashboardInfo.name"
+                @click="setCurrentDashboardID(dashboardInfo.id)"
+                class="mx-4"
+                variant="text"
+                :active="true"
+                prepend-icon="mdi-arrow-right-circle"
+                >
+                {{ dashboardInfo.name }}
+              </v-btn>
+              <v-btn
+                v-else
+                @click="setCurrentDashboardID(dashboardInfo.id)"
+                class="mx-4"
+                variant="text"
+                prepend-icon="mdi-arrow-right-circle-outline"
+                >
+                {{ dashboardInfo.name }}
+              </v-btn>
+            </div>
+          </v-col>
+          <v-col
+            class="text-left"
+            v-if="dashboard"
+            cols="auto"
+            lg="2"
+            md="2"
+            sm="12"
+            >
+            <div
+              v-for="project in dashboard.projects" :key="project.name"
+              >
+              <v-btn
+                v-if="currentProject.name == project.name"
+                @click="setCurrentProject(project)"
+                class="mx-4"
+                variant="text"
+                :active="true"
+                prepend-icon="mdi-circle"
+                >
+                {{ project.name }}
+              </v-btn>
+              <v-btn
+                v-else
+                @click="setCurrentProject(project)"
+                class="mx-4"
+                variant="text"
+                prepend-icon="mdi-circle-outline"
+                >
+                {{ project.name }}
+              </v-btn>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
 
     <!-- Show Project Description -->
     <v-container v-if="currentProject">
@@ -333,6 +379,7 @@ export default {
     } catch (error) {
       console.log(error);
     }
+
   },
 }
 </script>
