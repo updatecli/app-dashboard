@@ -137,9 +137,10 @@
           >
           <v-card
             v-if="app"
-            :flat=true
             shaped
             outline
+            :border=true
+            variant="elevated"
             >
             <v-row>
               <v-col
@@ -188,9 +189,8 @@
                 sm="12"
               >
                 <v-card
-                  :border="true"
-                  variant="outlined"
-                >
+                  :flat=true
+                  >
                   <v-card-title>
                     <v-row
                       align-center="center"
