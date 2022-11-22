@@ -8,129 +8,41 @@
         >
         <v-row>
           <v-col
-            class="text-right"
-            cols="auto"
-            lg="8"
-            md="8"
-            sm="12"
+            class="text-center"
           >
           <h1>
             Dashboards
           </h1>
           </v-col>
         </v-row>
-
         <v-row>
           <v-col
-            class="text-right"
-            cols="auto"
-            lg="8"
-            md="8"
-            sm="12"
-          >
-            <p>
-            Dashboards allow to visualize version information
-            </p>
-            <p>
-            First, pick a dashboard
-            </p>
-            <p>
-            Then a project within that dashboard
-            </p>
-            <p>
-            Finally, you can detailed application information
-            </p>
-          </v-col>
-          <v-col
-            class="text-left"
-            cols="auto"
-            lg="2"
-            md="2"
-            sm="12"
+            class="text-center"
+            >
+            <v-btn-toggle
+              v-model="toggle_exclusive"
+              divided rounded="xl"
+              variant="outlined"
             >
             <div
+              class="d-flex align-center flex-column"
               v-for="dashboardInfo in dashboards" :key="dashboardInfo.name"
               >
-              <v-btn
-                v-if="dashboard.name == dashboardInfo.name"
-                @click="setCurrentDashboardID(dashboardInfo.id)"
-                class="mx-4"
-                variant="text"
-                :active="true"
-                prepend-icon="mdi-arrow-right-circle"
-                >
-                {{ dashboardInfo.name }}
-              </v-btn>
-              <v-btn
-                v-else
-                @click="setCurrentDashboardID(dashboardInfo.id)"
-                class="mx-4"
-                variant="text"
-                prepend-icon="mdi-arrow-right-circle-outline"
-                >
-                {{ dashboardInfo.name }}
-              </v-btn>
+                <v-btn
+                  @click="setCurrentDashboardID(dashboardInfo.id)"
+                  variant="text"
+                  size="x-large"
+                  >
+                  {{ dashboardInfo.name }}
+                </v-btn>
             </div>
-          </v-col>
-          <v-col
-            class="text-left"
-            v-if="dashboard"
-            cols="auto"
-            lg="2"
-            md="2"
-            sm="12"
-            >
-            <div
-              v-for="project in dashboard.projects" :key="project.name"
-              >
-              <v-btn
-                v-if="currentProject.name == project.name"
-                @click="setCurrentProject(project)"
-                class="mx-4"
-                variant="text"
-                :active="true"
-                prepend-icon="mdi-circle"
-                >
-                {{ project.name }}
-              </v-btn>
-              <v-btn
-                v-else
-                @click="setCurrentProject(project)"
-                class="mx-4"
-                variant="text"
-                prepend-icon="mdi-circle-outline"
-                >
-                {{ project.name }}
-              </v-btn>
-            </div>
+            </v-btn-toggle>
           </v-col>
         </v-row>
       </v-container>
 
     <!-- Show Project Description -->
-    <v-container v-if="currentProject">
-      <v-row
-        class="mx-auto">
-        <v-col
-            cols="auto"
-            lg="12"
-            md="12"
-            sm="12"
-          >
-          <v-card
-            elevation="1"
-            shaped
-            outline
-            >
-            <v-card-title>
-              {{ currentProject.name }}
-            </v-card-title>
-            <v-card-text >
-              <p>{{ currentProject.description }}</p>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
+    <v-container v-if="currentDashboardID">
       <!--
         Show Project application in a table
       -->
@@ -153,10 +65,16 @@
                   Status
                 </th>
                 <th class="text-left">
-                  Name
+                  Project
                 </th>
                 <th class="text-left">
-                  Description
+                  Application
+                </th>
+                <th class="text-left">
+                  Created At
+                </th>
+                <th class="text-left">
+                  Updated At
                 </th>
                 <th class="text-left">
                   Apps
@@ -165,31 +83,44 @@
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody
+              v-for="project in dashboard.projects" :key="project.name"
+              >
               <tr
-                v-for="item in currentProject.apps"
+                v-for="item in project.apps"
                 :key="item.name"
               >
                 <td><v-icon :icon=getStatusIcon(item.status) :color=getStatusColor(item.status)></v-icon></td>
+                <td>{{ project.name }}</td>
                 <td>{{ item.name }}</td>
-                <td>{{ item.description }}</td>
+                <td>{{ item.createdAt }}</td>
+                <td>{{ item.updatedAt }}</td>
                 <td>
-                  <v-btn
-                    rounded
-                    density="compact"
-                    small
-                    v-for="spec in item.spec"
-                      :key="spec.name"
-                      >
-                    {{ spec.version }}
-                  </v-btn>
+                  <v-btn-toggle
+                  >
+                    <v-btn
+                      rounded
+                      density="compact"
+                      small
+                      v-for="spec in item.spec"
+                        :key="spec.name"
+                        >
+                      {{ spec.version }}
+                    </v-btn>
+                  </v-btn-toggle>
                 </td>
                 <td>
                   <v-chip
-                    class="ma-2"
-                    @click="app=item"
+                    @click="app=item;currentProject=project"
+                    v-if="app.name == item.name"
+                    append-icon="mdi-arrow-down-circle"
                   >
-                    Details
+                  </v-chip>
+                  <v-chip
+                    v-else
+                    @click="app=item;currentProject=project"
+                    append-icon="mdi-arrow-right-circle"
+                  >
                   </v-chip>
                 </td>
               </tr>
@@ -220,7 +151,24 @@
                 <v-card
                   :flat=true
                 >
-                  <v-card-title>{{ app.name }}</v-card-title>
+                  <v-card-title>Project: {{ currentProject.name }}</v-card-title>
+                  <v-card-text>
+                    <p>{{ currentProject.description }}</p>
+                  </v-card-text>
+                </v-card>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col
+                  cols="auto"
+                  lg="12"
+                  md="12"
+                  sm="12"
+              >
+                <v-card
+                  :flat=true
+                >
+                  <v-card-title>Application: {{ app.name }}</v-card-title>
                   <v-card-text>
                     <p>{{ app.description }}</p>
                   </v-card-text>
