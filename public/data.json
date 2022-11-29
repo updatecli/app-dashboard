@@ -6,7 +6,7 @@
         {
           "currentValue": "v0.38.0",
           "description": "A Declarative Dependency Management tool",
-          "expectedValue": "v0.38.0",
+          "expectedValue": "v0.38.1",
           "name": "Command Line"
         },
         {
