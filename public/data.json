@@ -16,7 +16,7 @@
           "name": "Github Action"
         },
         {
-          "currentValue": "v0.39.0",
+          "currentValue": "v0.40.0",
           "description": "Updatecli Docker Image stored on ghcr.io",
           "expectedValue": "v0.40.0",
           "name": "Docker"
