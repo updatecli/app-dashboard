@@ -18,7 +18,7 @@
         {
           "currentValue": "v0.40.1",
           "description": "Updatecli Docker Image stored on ghcr.io",
-          "expectedValue": "v0.40.2-alpha",
+          "expectedValue": "v0.40.1",
           "name": "Docker"
         }
       ],
